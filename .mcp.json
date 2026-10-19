@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "10ml": {
+    "perfume-finder": {
       "type": "http",
       "url": "https://mcp.10ml.com/mcp"
     }
