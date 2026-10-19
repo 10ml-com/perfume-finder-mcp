@@ -9,7 +9,7 @@
     "source": "github",
     "id": "1426113108"
   },
-  "version": "2.0.1",
+  "version": "2.0.2",
   "icons": [
     {
       "src": "https://10ml.com/brand/icons/icon-512.png",
@@ -30,6 +30,26 @@
     {
       "type": "streamable-http",
       "url": "https://mcp.10ml.com/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@10ml/perfume-finder-mcp",
+      "version": "2.0.2",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "perfume-finder-mcp",
+      "version": "2.0.2",
+      "transport": {
+        "type": "stdio"
+      }
     }
   ]
 }
