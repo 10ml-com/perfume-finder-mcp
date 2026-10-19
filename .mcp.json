@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "10ml": {
+      "type": "http",
+      "url": "https://mcp.10ml.com/mcp"
+    }
+  }
+}

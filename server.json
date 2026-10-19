@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.10ml/perfume-finder",
+  "title": "10ML Fragrance Index",
+  "description": "Expert perfume knowledge by 10ML's editors: notes, accords, families, similar scents and houses.",
+  "websiteUrl": "https://mcp.10ml.com",
+  "repository": {
+    "url": "https://github.com/10ml-com/perfume-finder-mcp",
+    "source": "github",
+    "id": "1426113108"
+  },
+  "version": "1.1.0",
+  "icons": [
+    {
+      "src": "https://10ml.com/brand/icons/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://10ml.com/brand/icons/icon-128.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "128x128"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.10ml.com/mcp"
+    }
+  ]
+}
