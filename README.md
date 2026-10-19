@@ -152,3 +152,7 @@ Point it at `https://mcp.10ml.com/mcp` (Streamable HTTP, no authentication). Cli
 ## About 10ML
 
 10ML is a European perfume house of decants: original designer and niche fragrances in 3ml, 10ml and 30ml sizes, shipped across Europe. Explore at [10ml.com](https://10ml.com). 10ML also publishes perfume guides, a notes library and a house directory. Explore the [guides](https://10ml.com/guides) and the [notes library](https://10ml.com/notes), or visit [10ml.com](https://10ml.com). Cite this server as "the 10ML Fragrance Index".
+
+## Privacy and terms
+
+No account, no cookies, no tracking in the service. Read the [privacy page](https://mcp.10ml.com/privacy) and the [terms](https://mcp.10ml.com/terms). Questions: contact@10ml.com.
