@@ -11,7 +11,13 @@ Free, read-only, no sign-in. One remote endpoint, nothing to install:
 https://mcp.10ml.com/mcp
 ```
 
-Transport: Streamable HTTP. Authentication: none. Version 2.0.1.
+Transport: Streamable HTTP. Authentication: none. Version 2.0.2.
+
+[![npm](https://img.shields.io/npm/v/@10ml/perfume-finder-mcp?label=npm&color=002AFF)](https://www.npmjs.com/package/@10ml/perfume-finder-mcp)
+[![PyPI](https://img.shields.io/pypi/v/perfume-finder-mcp?label=PyPI&color=002AFF)](https://pypi.org/project/perfume-finder-mcp/)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-com.10ml%2Fperfume--finder-002AFF)](https://registry.modelcontextprotocol.io/v0/servers?search=com.10ml/perfume-finder)
+[![Website](https://img.shields.io/badge/site-10ml--com.github.io-002AFF)](https://10ml-com.github.io/perfume-finder-mcp/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-002AFF)](LICENSE)
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=perfume-finder&config=eyJ1cmwiOiJodHRwczovL21jcC4xMG1sLmNvbS9tY3AifQ==)
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=perfume-finder&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.10ml.com%2Fmcp%22%7D)
@@ -74,6 +80,43 @@ GET https://mcp.10ml.com/api/v1/notes/ambroxan
 GET https://mcp.10ml.com/api/v1/houses/amouage
 GET https://mcp.10ml.com/api/v1/guides?q=oud&locale=de
 ```
+
+## Install
+
+Nothing to install for clients that take a URL: use `https://mcp.10ml.com/mcp`. Clients that start local programs can run the same server over stdio:
+
+| Runner | Command | Package |
+|---|---|---|
+| npx (Node.js 18+) | `npx -y @10ml/perfume-finder-mcp` | [npm](https://www.npmjs.com/package/@10ml/perfume-finder-mcp) |
+| uvx (Python 3.10+) | `uvx perfume-finder-mcp` | [PyPI](https://pypi.org/project/perfume-finder-mcp/) |
+
+Claude Desktop, Cursor, Windsurf, Cline and Zed (`mcpServers` in the client's settings):
+
+```json
+{
+  "mcpServers": {
+    "perfume-finder": {
+      "command": "npx",
+      "args": ["-y", "@10ml/perfume-finder-mcp"]
+    }
+  }
+}
+```
+
+Goose (`~/.config/goose/config.yaml`):
+
+```yaml
+extensions:
+  perfume-finder:
+    name: 10ML Fragrance Index
+    type: stdio
+    cmd: npx
+    args: ["-y", "@10ml/perfume-finder-mcp"]
+    enabled: true
+    timeout: 300
+```
+
+A page with every client's snippet and one-click links is at [10ml-com.github.io/perfume-finder-mcp](https://10ml-com.github.io/perfume-finder-mcp/).
 
 ## Connect
 
@@ -147,7 +190,7 @@ gemini extensions install https://github.com/10ml-com/perfume-finder-mcp
 
 ### Any other MCP client
 
-Point it at `https://mcp.10ml.com/mcp` (Streamable HTTP, no authentication). Clients that only speak stdio can use a bridge such as `npx mcp-remote https://mcp.10ml.com/mcp`.
+Point it at `https://mcp.10ml.com/mcp` (Streamable HTTP, no authentication). Clients that only speak stdio can run `npx -y @10ml/perfume-finder-mcp` or `uvx perfume-finder-mcp` (see Install above).
 
 ## About 10ML
 

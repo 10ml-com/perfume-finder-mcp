@@ -23,6 +23,6 @@ This is a remote MCP server. There is nothing to download, build or run locally,
 4. Check the connection by listing the tools. You should see 16 tools, starting with `search_perfumes`, `get_perfume`, `compare_perfumes`, `find_similar_perfumes` and `find_perfume_alternatives`.
 5. Try it: call `get_perfume` with `{"perfume": "Creed Aventus"}`.
 
-If the client only supports stdio servers, use the bridge `npx -y mcp-remote https://mcp.10ml.com/mcp` as the command instead.
+If the client only supports stdio servers, use `npx -y @10ml/perfume-finder-mcp` (or `uvx perfume-finder-mcp`) as the command instead.
 
 All tools are read-only and safe to auto-approve. Clients without MCP support can use the REST API described at https://mcp.10ml.com/openapi.json.
