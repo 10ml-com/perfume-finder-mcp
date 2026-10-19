@@ -122,7 +122,7 @@ A page with every client's snippet and one-click links is at [10ml-com.github.io
 
 ### Claude (claude.ai and the desktop app)
 
-Settings → Connectors → **Add custom connector** → paste `https://mcp.10ml.com/mcp`.
+Available in [Claude's connectors directory](https://claude.ai/directory/10ml-perfume-finder). Or Settings → Connectors → **Add custom connector** → paste `https://mcp.10ml.com/mcp`.
 
 ### Claude Code
 
