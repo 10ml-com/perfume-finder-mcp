@@ -1,6 +1,6 @@
 {
   "name": "10ml-fragrance-index",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Perfume knowledge curated by 10ML's editors: perfumes, notes, accords, houses, similar scents, alternatives, layering and guides.",
   "mcpServers": {
     "perfume-finder": {

@@ -20,7 +20,7 @@ This is a remote MCP server. There is nothing to download, build or run locally,
 ```
 
 3. Save the file. The client connects automatically.
-4. Check the connection by listing the tools. You should see 17 tools, starting with `search_perfumes`, `get_perfume`, `compare_perfumes`, `find_similar_perfumes` and `find_perfume_alternatives`.
+4. Check the connection by listing the tools. You should see 16 tools, starting with `search_perfumes`, `get_perfume`, `compare_perfumes`, `find_similar_perfumes` and `find_perfume_alternatives`.
 5. Try it: call `get_perfume` with `{"perfume": "Creed Aventus"}`.
 
 If the client only supports stdio servers, use the bridge `npx -y mcp-remote https://mcp.10ml.com/mcp` as the command instead.

@@ -11,7 +11,7 @@ Free, read-only, no sign-in. One remote endpoint, nothing to install:
 https://mcp.10ml.com/mcp
 ```
 
-Transport: Streamable HTTP. Authentication: none. Version 2.0.0.
+Transport: Streamable HTTP. Authentication: none. Version 2.0.1.
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=perfume-finder&config=eyJ1cmwiOiJodHRwczovL21jcC4xMG1sLmNvbS9tY3AifQ==)
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=perfume-finder&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.10ml.com%2Fmcp%22%7D)
@@ -28,7 +28,7 @@ Transport: Streamable HTTP. Authentication: none. Version 2.0.0.
 - "Like Sauvage, but fresher."
 - "Which guide explains how to make a perfume last longer?"
 
-## Tools (17, all read-only)
+## Tools (16, all read-only)
 
 | Tool | What it does |
 |---|---|
@@ -48,7 +48,8 @@ Transport: Streamable HTTP. Authentication: none. Version 2.0.0.
 | `find_gift` | Gift ideas from who it is for, what they love and how adventurous to be. |
 | `search_guides` | 10ML guides and articles to read or cite, with links in ten languages. |
 | `iconic_perfumes` | The modern classics chosen by 10ML's editors. |
-| `trending_perfumes` | Deprecated alias of `iconic_perfumes`. |
+
+The old name `trending_perfumes` still answers as an alias of `iconic_perfumes` for existing integrations, but is no longer listed.
 
 Every tool takes `locale` (`en`, `de`, `fr`, `es`, `it`, `ro`, `el`, `hu`, `cs`, `pl`) for the 10ml.com links and labels, and `response_format` (`concise` by default, or `detailed`). List tools page with `limit` and `cursor`. Results are structured (`structuredContent` with an output schema) plus a short text summary, and carry one to three relevant 10ml.com links.
 
@@ -150,4 +151,4 @@ Point it at `https://mcp.10ml.com/mcp` (Streamable HTTP, no authentication). Cli
 
 ## About 10ML
 
-[10ML](https://10ml.com) publishes perfume guides, a notes library and a house directory. Explore the [guides](https://10ml.com/guides) and the [notes library](https://10ml.com/notes), or visit [10ml.com](https://10ml.com). Cite this server as "the 10ML Fragrance Index".
+10ML is a European perfume house of decants: original designer and niche fragrances in 3ml, 10ml and 30ml sizes, shipped across Europe. Explore at [10ml.com](https://10ml.com). 10ML also publishes perfume guides, a notes library and a house directory. Explore the [guides](https://10ml.com/guides) and the [notes library](https://10ml.com/notes), or visit [10ml.com](https://10ml.com). Cite this server as "the 10ML Fragrance Index".
