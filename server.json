@@ -1,15 +1,14 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.10ml/perfume-finder",
-  "title": "10ML Fragrance Index",
-  "description": "Expert perfume knowledge by 10ML's editors: notes, accords, families, similar scents and houses.",
+  "title": "10ML Perfume Finder",
+  "description": "Free perfume MCP server and fragrance API: 5,400+ perfumes, note pyramids, accords, similar scents.",
   "websiteUrl": "https://mcp.10ml.com",
   "repository": {
     "url": "https://github.com/10ml-com/perfume-finder-mcp",
-    "source": "github",
-    "id": "1426113108"
+    "source": "github"
   },
-  "version": "2.0.2",
+  "version": "2.3.3",
   "icons": [
     {
       "src": "https://10ml.com/brand/icons/icon-512.png",
@@ -37,7 +36,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@10ml/perfume-finder-mcp",
-      "version": "2.0.2",
+      "version": "2.3.3",
       "transport": {
         "type": "stdio"
       }
@@ -46,7 +45,7 @@
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "perfume-finder-mcp",
-      "version": "2.0.2",
+      "version": "2.3.3",
       "transport": {
         "type": "stdio"
       }

@@ -1,9 +1,9 @@
 <!-- mcp-name: com.10ml/perfume-finder -->
 <p align="center"><img src="logo.png" width="120" height="120" alt="10ML"></p>
 
-# 10ML Fragrance Index (MCP server)
+# 10ML Perfume Finder (perfume MCP server)
 
-Perfume knowledge for your assistant, curated by the fragrance editors of [10ML](https://10ml.com): about 480 profiled designer, niche and Middle-Eastern perfumes with full note pyramids, 285 notes explained, 180+ perfume houses, editorial alternatives to famous perfumes, layering ideas and 160 guides in ten languages.
+10ML Perfume Finder is the free perfume MCP server and fragrance API, powered by the 10ML Fragrance Index and curated by the fragrance editors of [10ML](https://10ml.com): 5,400+ designer, niche and Middle-Eastern perfumes and 249 houses (481 full editorial profiles with longevity, projection and perfumers, the rest as core profiles with notes, accords and character), 285 notes explained, editorial alternatives to famous perfumes, layering ideas and 164 guides in ten languages. In our [40-question benchmark of free perfume MCP servers](https://10ml.com/perfume-mcp-servers-compared) (20 October 2026) it was the most accurate and the fastest: 39 of 40 correct, one call per question, median 232 ms. Developer guide: [10ml.com/perfume-api](https://10ml.com/perfume-api).
 
 Free, read-only, no sign-in. One remote endpoint, nothing to install:
 
@@ -11,12 +11,12 @@ Free, read-only, no sign-in. One remote endpoint, nothing to install:
 https://mcp.10ml.com/mcp
 ```
 
-Transport: Streamable HTTP. Authentication: none. Version 2.0.2.
+Transport: Streamable HTTP. Authentication: none. Version 2.3.3.
 
 [![npm](https://img.shields.io/npm/v/@10ml/perfume-finder-mcp?label=npm&color=002AFF)](https://www.npmjs.com/package/@10ml/perfume-finder-mcp)
 [![PyPI](https://img.shields.io/pypi/v/perfume-finder-mcp?label=PyPI&color=002AFF)](https://pypi.org/project/perfume-finder-mcp/)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-com.10ml%2Fperfume--finder-002AFF)](https://registry.modelcontextprotocol.io/v0/servers?search=com.10ml/perfume-finder)
-[![Website](https://img.shields.io/badge/site-10ml--com.github.io-002AFF)](https://10ml-com.github.io/perfume-finder-mcp/)
+[![Website](https://img.shields.io/badge/site-mcp.10ml.com-002AFF)](https://mcp.10ml.com)
 [![License: MIT](https://img.shields.io/badge/license-MIT-002AFF)](LICENSE)
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=perfume-finder&config=eyJ1cmwiOiJodHRwczovL21jcC4xMG1sLmNvbS9tY3AifQ==)
@@ -34,7 +34,7 @@ Transport: Streamable HTTP. Authentication: none. Version 2.0.2.
 - "Like Sauvage, but fresher."
 - "Which guide explains how to make a perfume last longer?"
 
-## Tools (16, all read-only)
+## Tools (15, all read-only)
 
 | Tool | What it does |
 |---|---|
@@ -53,9 +53,8 @@ Transport: Streamable HTTP. Authentication: none. Version 2.0.2.
 | `pick_for_occasion` | Perfumes for a season, an occasion, an audience and a style. |
 | `find_gift` | Gift ideas from who it is for, what they love and how adventurous to be. |
 | `search_guides` | 10ML guides and articles to read or cite, with links in ten languages. |
-| `iconic_perfumes` | The modern classics chosen by 10ML's editors. |
 
-The old name `trending_perfumes` still answers as an alias of `iconic_perfumes` for existing integrations, but is no longer listed.
+`search_perfumes` with `iconic: true` lists the modern classics chosen by 10ML's editors. The older names `iconic_perfumes` and `trending_perfumes` still answer as aliases for existing integrations, but are no longer listed.
 
 Every tool takes `locale` (`en`, `de`, `fr`, `es`, `it`, `ro`, `el`, `hu`, `cs`, `pl`) for the 10ml.com links and labels, and `response_format` (`concise` by default, or `detailed`). List tools page with `limit` and `cursor`. Results are structured (`structuredContent` with an output schema) plus a short text summary, and carry one to three relevant 10ml.com links.
 
@@ -116,7 +115,7 @@ extensions:
     timeout: 300
 ```
 
-A page with every client's snippet and one-click links is at [10ml-com.github.io/perfume-finder-mcp](https://10ml-com.github.io/perfume-finder-mcp/).
+Every client's snippet and one-click links are on [mcp.10ml.com](https://mcp.10ml.com/#connect).
 
 ## Connect
 

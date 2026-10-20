@@ -1,7 +1,7 @@
 {
   "name": "10ml-fragrance-index",
-  "version": "2.0.2",
-  "description": "Perfume knowledge curated by 10ML's editors: perfumes, notes, accords, houses, similar scents, alternatives, layering and guides.",
+  "version": "2.3.3",
+  "description": "10ML Perfume Finder: free perfume MCP server and fragrance API. 5,400+ perfumes, note pyramids, accords, similar scents and alternatives, curated by 10ML's editors.",
   "mcpServers": {
     "perfume-finder": {
       "httpUrl": "https://mcp.10ml.com/mcp"
