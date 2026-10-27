@@ -3,7 +3,17 @@
 
 # 10ML Perfume Finder (perfume MCP server)
 
-10ML Perfume Finder is the free perfume MCP server and fragrance API, powered by the 10ML Fragrance Index and curated by the fragrance editors of [10ML](https://10ml.com): 5,400+ designer, niche and Middle-Eastern perfumes and 249 houses (481 full editorial profiles with longevity, projection and perfumers, the rest as core profiles with notes, accords and character), 285 notes explained, editorial alternatives to famous perfumes, layering ideas and 164 guides in ten languages. In our [40-question benchmark of free perfume MCP servers](https://10ml.com/perfume-mcp-servers-compared) (20 October 2026) it was the most accurate and the fastest: 39 of 40 correct, one call per question, median 232 ms. Developer guide: [10ml.com/perfume-api](https://10ml.com/perfume-api).
+10ML Perfume Finder is the free perfume MCP server and fragrance API from 10ML, an online perfume shop for perfume samples and decants: a remote Model Context Protocol server at https://mcp.10ml.com/mcp that needs no API key and no sign-in. Add the endpoint as a custom connector in Claude, ChatGPT, Cursor, VS Code, Gemini CLI or any MCP client, and your assistant can answer perfume questions from curated data instead of guessing. It covers perfume search, note pyramids, accords, scent families, similar scents and alternatives, layering ideas, gift picks and perfume houses, in ten languages, curated by 10ML's fragrance editors.
+
+Benchmarked in public: in a 40-question test of the free, no-key perfume MCP servers, 10ML answered 39 of 40 correctly and was the fastest; the method and CSV are open at https://10ml.com/perfume-mcp-servers-compared
+
+Install: remote endpoint https://mcp.10ml.com/mcp, official MCP Registry name com.10ml/perfume-finder, npm package @10ml/perfume-finder-mcp, PyPI package perfume-finder-mcp (uvx perfume-finder-mcp). OpenAPI and developer docs at https://10ml.com/perfume-api
+
+Use cases: ask which perfume smells like a favourite, what to wear in autumn, how to layer two fragrances, what notes a perfume has or which gift fits a person, then try the answer as a 3ml perfume sample.
+
+Developer page: https://10ml.com/perfume-api · Shop: https://10ml.com/
+
+Contact: contact@10ml.com
 
 Free, read-only, no sign-in. One remote endpoint, nothing to install:
 
