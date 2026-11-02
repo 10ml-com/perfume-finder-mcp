@@ -1,0 +1,85 @@
+# Publishes the npm packages in packages/ with npm trusted publishing (GitHub Actions OIDC) and provenance.
+# No npm token is stored anywhere: each package lists this repo and this workflow file as its Trusted Publisher.
+# Manual run only (Actions > Publish npm packages > Run workflow). A package whose version is already on npm is skipped.
+name: Publish npm packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package folder to publish (all = every package whose version is not on npm yet)
+        type: choice
+        default: all
+        options:
+          - all
+          - perfume-finder-mcp
+          - perfume-mcp
+          - perfume-api
+          - ai-sdk-perfume
+          - n8n-nodes-10ml-perfume
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.pick.outputs.packages }}
+    steps:
+      - id: pick
+        env:
+          CHOICE: ${{ inputs.package }}
+        run: |
+          if [ "$CHOICE" = "all" ]; then
+            echo 'packages=["perfume-finder-mcp","perfume-mcp","perfume-api","ai-sdk-perfume","n8n-nodes-10ml-perfume"]' >> "$GITHUB_OUTPUT"
+          else
+            echo "packages=[\"$CHOICE\"]" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish:
+    needs: plan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.plan.outputs.packages) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Check npm version (trusted publishing needs npm 11.5.1 or newer)
+        run: npm --version
+      - name: Skip when this version is already on npm
+        id: version
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "$NAME@$VERSION is already on npm, nothing to publish"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install and build
+        if: steps.version.outputs.publish == 'true'
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          if [ "${{ matrix.package }}" = "perfume-mcp" ]; then
+            # perfume-mcp is the same stdio server as perfume-finder-mcp under a second name
+            (cd ../perfume-finder-mcp && npm ci && npm run build)
+            mkdir -p dist && cp ../perfume-finder-mcp/dist/index.js dist/index.js
+          else
+            npm run build
+          fi
+      - name: Publish with provenance
+        if: steps.version.outputs.publish == 'true'
+        working-directory: packages/${{ matrix.package }}
+        run: npm publish --provenance --access public --ignore-scripts

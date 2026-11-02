@@ -1,0 +1,68 @@
+{
+  "name": "perfume-api",
+  "version": "2.5.5",
+  "description": "Free perfume API client: perfumes, note pyramids, accords, similar scents, notes and houses from the 10ML Fragrance Index. No API key, JSON over HTTPS.",
+  "keywords": [
+    "perfume",
+    "fragrance",
+    "cologne",
+    "perfume-api",
+    "fragrance-api",
+    "perfume-mcp",
+    "fragrance-mcp",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "perfume-notes",
+    "fragrance-notes",
+    "scent",
+    "eau-de-parfum",
+    "perfume-recommendation",
+    "similar-perfumes",
+    "claude",
+    "chatgpt",
+    "cursor"
+  ],
+  "homepage": "https://mcp.10ml.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10ml-com/perfume-finder-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/10ml-com/perfume-finder-mcp/issues"
+  },
+  "author": "10ML Team <contact@10ml.com> (https://10ml.com)",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "gen": "node ../scripts/gen-types.mjs",
+    "build": "tsc",
+    "test": "npm run build && node --test test/client.test.mjs",
+    "smoke": "node test/smoke.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "perfume-mcp",
+  "version": "2.5.5",
+  "mcpName": "com.10ml/perfume-finder",
+  "description": "Perfume MCP server: free fragrance knowledge for Claude, Cursor and any MCP client. 6,000+ perfumes, note pyramids, accords, similar scents and alternatives from the 10ML Fragrance Index. No API key.",
+  "keywords": [
+    "perfume",
+    "fragrance",
+    "cologne",
+    "perfume-api",
+    "fragrance-api",
+    "perfume-mcp",
+    "fragrance-mcp",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "perfume-notes",
+    "fragrance-notes",
+    "scent",
+    "eau-de-parfum",
+    "perfume-recommendation",
+    "similar-perfumes",
+    "claude",
+    "chatgpt",
+    "cursor"
+  ],
+  "homepage": "https://mcp.10ml.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10ml-com/perfume-finder-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/10ml-com/perfume-finder-mcp/issues"
+  },
+  "author": "10ML Team <contact@10ml.com> (https://10ml.com)",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "perfume-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1"
+  }
+}
