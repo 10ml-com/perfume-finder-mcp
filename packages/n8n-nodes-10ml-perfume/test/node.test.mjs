@@ -66,7 +66,7 @@ function buildRequest(resource, operation, top = {}, collections = {}) {
 
 test('manifest follows n8n community node conventions', () => {
 	assert.equal(pkg.name, 'n8n-nodes-10ml-perfume');
-	assert.equal(pkg.version, '1.0.4');
+	assert.equal(pkg.version, '1.0.5');
 	assert.ok(pkg.keywords.includes('n8n-community-node-package'));
 	assert.equal(pkg.license, 'MIT');
 	assert.equal(pkg.author.name, '10ML Team');

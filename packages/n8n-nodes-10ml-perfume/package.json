@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-10ml-perfume",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "n8n community node for the free 10ML Perfume Finder: search perfumes, note pyramids, accords, similar scents, alternatives, notes and houses from the 10ML Fragrance Index. No API key.",
   "keywords": [
     "n8n-community-node-package",

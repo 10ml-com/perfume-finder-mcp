@@ -63,24 +63,26 @@ const list = (
 		routing: { send: { type: 'query', property, value: commaList } },
 	});
 
-// The default is the first value (the lint rule cannot see a computed default).
-/* eslint-disable n8n-nodes-base/node-param-default-missing */
+// The default is the first value. It is held in a plain variable because n8n's
+// package scanner ignores eslint-disable comments and rejects `values[0]!`.
 const choice = (
 	displayName: string,
 	name: string,
 	property: string,
 	values: string[],
 	description: string,
-): INodeProperties => ({
-	displayName,
-	name,
-	type: 'options',
-	options: options(values),
-	default: values[0]!,
-	description,
-	routing: query(property),
-});
-/* eslint-enable n8n-nodes-base/node-param-default-missing */
+): INodeProperties => {
+	const first = values[0] ?? '';
+	return {
+		displayName,
+		name,
+		type: 'options',
+		options: options(values),
+		default: first,
+		description,
+		routing: query(property),
+	};
+};
 
 const limit = (max: number, def: number): INodeProperties => ({
 	displayName: 'Limit',
