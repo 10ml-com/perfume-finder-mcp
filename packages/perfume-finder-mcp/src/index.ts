@@ -28,7 +28,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 
 const REMOTE_URL = 'https://mcp.10ml.com/mcp';
-const PACKAGE_VERSION = '2.5.5';
+const PACKAGE_VERSION = '2.6.1';
 
 async function main(): Promise<void> {
   const remote = new Client({ name: '10ml-perfume-finder-stdio', version: PACKAGE_VERSION });

@@ -1,6 +1,6 @@
 {
   "name": "@10ml/perfume-finder-mcp",
-  "version": "2.5.5",
+  "version": "2.6.1",
   "mcpName": "com.10ml/perfume-finder",
   "description": "10ML Perfume Finder: the free perfume MCP server and fragrance API for AI assistants. 6,000+ perfumes and 249 houses from the 10ML Fragrance Index with note pyramids, accords, similar scents and alternatives. Stdio for Claude Desktop, Cursor, Goose and any MCP client.",
   "keywords": [

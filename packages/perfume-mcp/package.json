@@ -1,6 +1,6 @@
 {
   "name": "perfume-mcp",
-  "version": "2.5.5",
+  "version": "2.6.1",
   "mcpName": "com.10ml/perfume-finder",
   "description": "Perfume MCP server: free fragrance knowledge for Claude, Cursor and any MCP client. 6,000+ perfumes, note pyramids, accords, similar scents and alternatives from the 10ML Fragrance Index. No API key.",
   "keywords": [

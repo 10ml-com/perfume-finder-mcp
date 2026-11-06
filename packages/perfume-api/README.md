@@ -147,6 +147,10 @@ Every call takes `locale` (`en`, `de`, `fr`, `es`, `it`, `ro`, `el`, `hu`, `cs`,
 
 Free and read-only, with no key or sign-in. There is no published rate limit: please cache answers, page long lists with `limit` and `cursor`, and send a descriptive User-Agent from automated clients. For heavy use write to contact@10ml.com.
 
+## Terms and credit
+
+Commercial use is free and results may be stored (cached). The one condition is a visible credit, "Data: 10ML Fragrance Index", linking to https://10ml.com/perfume-api, wherever the data appears. There is no fixed rate limit; for heavy volume write to contact@10ml.com. Full terms: [mcp.10ml.com/terms](https://mcp.10ml.com/terms).
+
 ## How it compares
 
 In our 40-question benchmark of free, no-key perfume MCP servers (20 October 2026): 39 of 40 correct, median 232 ms. [Read the benchmark](https://10ml.com/perfume-mcp-servers-compared).

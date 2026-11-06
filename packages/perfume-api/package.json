@@ -1,6 +1,6 @@
 {
   "name": "perfume-api",
-  "version": "2.5.5",
+  "version": "2.6.1",
   "description": "Free perfume API client: perfumes, note pyramids, accords, similar scents, notes and houses from the 10ML Fragrance Index. No API key, JSON over HTTPS.",
   "keywords": [
     "perfume",
