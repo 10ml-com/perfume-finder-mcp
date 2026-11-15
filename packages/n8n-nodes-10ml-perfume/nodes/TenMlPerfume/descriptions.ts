@@ -1,5 +1,5 @@
 import type { INodeProperties, INodePropertyOptions } from 'n8n-workflow';
-import { listOutput, singleOutput } from './output';
+import { followCursor, listOutput, singleOutput } from './output';
 
 type Resource = 'perfume' | 'note' | 'house' | 'guide';
 
@@ -84,22 +84,43 @@ const choice = (
 	};
 };
 
-const limit = (max: number, def: number): INodeProperties => ({
-	displayName: 'Limit',
-	name: 'maxResults', // not "limit": the n8n lint rule wants 50 for that name, the API caps at 8 to 50 per route
-	type: 'number',
-	typeOptions: { minValue: 1, maxValue: max },
-	default: def,
-	description: 'Max number of results to return',
-	routing: query('limit'),
-});
-
-const cursor: INodeProperties = text(
-	'Cursor',
-	'cursor',
-	'cursor',
-	'The next_cursor of the previous page, to read the next page (turn on Return Full Response to see it)',
-);
+// Return All and Limit for a list operation. The API gives at most `pageMax` results per page; the node
+// follows the next_cursor of each page itself (see followCursor) and returns one item per result.
+const listParameters = (
+	resource: Resource,
+	operation: string,
+	pageMax: number,
+): INodeProperties[] => [
+	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+		displayOptions: show(resource, operation),
+		routing: {
+			// always on: Limit also needs several pages when it is above the size of one page
+			send: { paginate: true },
+			operations: { pagination: followCursor(pageMax) },
+		},
+	},
+	{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		typeOptions: { minValue: 1 },
+		default: 50,
+		description: 'Max number of results to return',
+		displayOptions: { show: { resource: [resource], operation: [operation], returnAll: [false] } },
+		// Never below 1 (0 would mean no limit). No cap at all while Return All is on: an expression can
+		// turn Return All on without hiding this field.
+		routing: {
+			output: {
+				maxResults: '={{ $parameter["returnAll"] ? 0 : Math.max(1, Math.floor(Number($value) || 1)) }}',
+			},
+		},
+	},
+];
 
 const locale: INodeProperties = {
 	displayName: 'Language',
@@ -120,15 +141,6 @@ const detailed: INodeProperties = {
 	routing: {
 		send: { type: 'query', property: 'format', value: '={{ $value ? "detailed" : "concise" }}' },
 	},
-};
-
-const returnFullResponse: INodeProperties = {
-	displayName: 'Return Full Response',
-	name: 'returnFullResponse',
-	type: 'boolean',
-	default: false,
-	description:
-		'Whether to return the whole answer as one item (with total and next_cursor) instead of one item per result',
 };
 
 const house: INodeProperties = text(
@@ -206,7 +218,7 @@ export const properties: INodeProperties[] = [
 				description: "The editors' alternatives to a famous perfume, from other houses",
 				routing: {
 					request: { method: 'GET', url: '/alternatives' },
-					output: { postReceive: [listOutput('alternatives')] },
+					output: { postReceive: [listOutput('alternatives', (a) => a.total === 0 && typeof a.message === 'string')] },
 				},
 			},
 			{
@@ -216,7 +228,7 @@ export const properties: INodeProperties[] = [
 				description: 'Perfumes that smell like one you name, or like a list of notes and accords',
 				routing: {
 					request: { method: 'GET', url: '/similar' },
-					output: { postReceive: [listOutput('results')] },
+					output: { postReceive: [listOutput('results', (a) => (a.target as { in_index?: boolean } | undefined)?.in_index === false)] },
 				},
 			},
 			{
@@ -251,6 +263,7 @@ export const properties: INodeProperties[] = [
 			placeholder: 'e.g. fresh citrus summer for men',
 		},
 	),
+	...listParameters('perfume', 'search', 20),
 	collection('Filters', 'filters', 'perfume', 'search', [
 		choice(
 			'Audience',
@@ -329,13 +342,7 @@ export const properties: INodeProperties[] = [
 			'A style word the scent should have',
 		),
 	]),
-	collection('Options', 'options', 'perfume', 'search', [
-		cursor,
-		detailed,
-		limit(20, 8),
-		locale,
-		returnFullResponse,
-	]),
+	collection('Options', 'options', 'perfume', 'search', [detailed, locale]),
 
 	// get
 	nameField(
@@ -360,6 +367,7 @@ export const properties: INodeProperties[] = [
 			placeholder: 'e.g. Dior Sauvage',
 		},
 	),
+	...listParameters('perfume', 'findSimilar', 15),
 	collection('Filters', 'filters', 'perfume', 'findSimilar', [
 		list(
 			'Accords',
@@ -396,14 +404,7 @@ export const properties: INodeProperties[] = [
 			'Move away from the starting point in one direction',
 		),
 	]),
-	collection('Options', 'options', 'perfume', 'findSimilar', [
-		cursor,
-		detailed,
-		house,
-		limit(15, 8),
-		locale,
-		returnFullResponse,
-	]),
+	collection('Options', 'options', 'perfume', 'findSimilar', [detailed, house, locale]),
 
 	// find alternatives
 	{
@@ -413,6 +414,7 @@ export const properties: INodeProperties[] = [
 		}),
 		required: true,
 	},
+	...listParameters('perfume', 'findAlternatives', 10),
 	collection('Filters', 'filters', 'perfume', 'findAlternatives', [
 		choice(
 			'Closeness',
@@ -422,13 +424,7 @@ export const properties: INodeProperties[] = [
 			'Only alternatives at this closeness',
 		),
 	]),
-	collection('Options', 'options', 'perfume', 'findAlternatives', [
-		cursor,
-		house,
-		limit(10, 6),
-		locale,
-		returnFullResponse,
-	]),
+	collection('Options', 'options', 'perfume', 'findAlternatives', [house, locale]),
 
 	// ---------------- Note ----------------
 	{
@@ -489,6 +485,7 @@ export const properties: INodeProperties[] = [
 	},
 	nameField('house', 'get', 'House', 'house', 'The perfume house', 'e.g. Creed', '/houses'),
 	collection('Options', 'options', 'house', 'get', [locale]),
+	...listParameters('house', 'getMany', 50),
 	collection('Filters', 'filters', 'house', 'getMany', [
 		text(
 			'Country',
@@ -505,12 +502,7 @@ export const properties: INodeProperties[] = [
 			'Only houses of this type',
 		),
 	]),
-	collection('Options', 'options', 'house', 'getMany', [
-		cursor,
-		limit(50, 20),
-		locale,
-		returnFullResponse,
-	]),
+	collection('Options', 'options', 'house', 'getMany', [locale]),
 
 	// ---------------- Guide ----------------
 	{
@@ -543,6 +535,7 @@ export const properties: INodeProperties[] = [
 			placeholder: 'e.g. how to make perfume last',
 		},
 	),
+	...listParameters('guide', 'search', 20),
 	collection('Filters', 'filters', 'guide', 'search', [
 		choice(
 			'Type',
@@ -552,10 +545,5 @@ export const properties: INodeProperties[] = [
 			'How-to, list (rankings and comparisons), alternatives, note (a note explained) or house (a house mapped)',
 		),
 	]),
-	collection('Options', 'options', 'guide', 'search', [
-		cursor,
-		limit(20, 8),
-		locale,
-		returnFullResponse,
-	]),
+	collection('Options', 'options', 'guide', 'search', [locale]),
 ];
